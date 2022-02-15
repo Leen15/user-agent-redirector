@@ -13,6 +13,13 @@ $current_path = strtoupper($current_path) . "_";
 // find envs to use with the current path
 $envs = array_filter($_ENV, function($k) {
   global $current_path;
+  if ($current_path == "_" && 
+    ($k == "IOS_URL" || 
+    $k == "ANDROID_URL" || 
+    $k == "HUAWEI_URL" || 
+    $k == "FALLBACK_URL" )) {
+    return true;
+  }
   return substr($k, 0, strlen($current_path)) === $current_path;
 }, ARRAY_FILTER_USE_KEY);
 
@@ -37,7 +44,7 @@ else {
 
 $redirect_url = $envs[$current_path . $key];
 
-if (getenv("DEBUG") && getenv("DEBUG") == true) {
+if (getenv("DEBUG") && getenv("DEBUG") == 'true') {
   echo "PATH: " . $current_path . PHP_EOL;
   echo "ENVS: ";
   var_dump($envs);
