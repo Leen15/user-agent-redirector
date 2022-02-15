@@ -13,10 +13,10 @@ $current_path = strtoupper($current_path) . "_";
 // find envs to use with the current path
 $envs = array_filter($_ENV, function($k) {
   global $current_path;
-  if ($current_path == "_" && 
-    ($k == "IOS_URL" || 
-    $k == "ANDROID_URL" || 
-    $k == "HUAWEI_URL" || 
+  if ($current_path == "_" &&
+    ($k == "IOS_URL" ||
+    $k == "ANDROID_URL" ||
+    $k == "HUAWEI_URL" ||
     $k == "FALLBACK_URL" )) {
     return true;
   }
@@ -33,10 +33,10 @@ if ( $detect->is('iOS') ) {
   $key = "IOS_URL";
 }
 else if ( $detect->match('HMSCore')) {
-  $key = "ANDROID_URL";
+  $key = "HUAWEI_URL";
 }
 else if ( $detect->is('AndroidOS') ) {
-  $key = "HUAWEI_URL";
+  $key = "ANDROID_URL";
 }
 else {
   $key = "FALLBACK_URL";
