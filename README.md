@@ -24,5 +24,5 @@ For testing purpose, you can set the env `DEBUG=true` and see what the tool will
 ## how to run it
 define your rules in the `.env` file and then run:
 ```
-docker run -d -p 80:80 --env-file .env --name mobile-user-agent-redirect -v app-download-detector
+docker run -d -p 80:80 --env-file .env leen15/user-agent-redirector
 ```
