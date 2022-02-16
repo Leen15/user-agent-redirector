@@ -8,19 +8,20 @@ header("Content-Type: text/plain");
 $current_path = $_SERVER['REQUEST_URI'];
 $current_path = str_replace("/", "", $current_path);
 $current_path = str_replace("-", "_", $current_path);
+$current_path = str_replace(" ", "", $current_path);
 $current_path = strtoupper($current_path) . "_";
 
 // find envs to use with the current path
 $envs = array_filter($_ENV, function($k) {
   global $current_path;
-  if ($current_path == "_" &&
-    ($k == "IOS_URL" ||
-    $k == "ANDROID_URL" ||
-    $k == "HUAWEI_URL" ||
-    $k == "FALLBACK_URL" )) {
-    return true;
-  }
-  return substr($k, 0, strlen($current_path)) === $current_path;
+
+  return (substr($k, 0, strlen($current_path)) === $current_path
+  &&
+    ($k == $current_path . "IOS_URL" ||
+    $k == $current_path . "ANDROID_URL" ||
+    $k == $current_path . "HUAWEI_URL" ||
+    $k == $current_path . "FALLBACK_URL" )
+  );
 }, ARRAY_FILTER_USE_KEY);
 
 

@@ -21,7 +21,7 @@ You can define multiple environment variables for every PATH you want to match.
 
 For testing purpose, you can set the env `DEBUG=true` and see what the tool will do without follow the redirect.
 
-If you need to redirect the root path, just define envs without the prefix (ex. `IOS_URL` etc)
+If you need to redirect the root path, just define envs without the prefix keeping the first underscore (ex. `_IOS_URL` etc)
 
 ## how to run it
 define your rules in the `.env` file and then run:
